@@ -1,24 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>JEN FLASH BUILDER - Sign Up</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEN FLASH BUILDER PRO</title>
 <style>
-body {background:black; color:white; font-family:sans-serif; text-align:center; padding-top:50px;}
-input {width:80%; padding:12px; margin:10px; border-radius:8px; border:none;}
-button {padding:12px 30px; background:#00FF88; color:black; border:none; border-radius:8px; font-weight:bold; font-size:16px;}
+  body{margin:0;font-family:'Poppins',sans-serif;background:#0a0a0a;color:#fff;}
+ .container{max-width:600px;margin:40px auto;padding:20px;text-align:center;}
+ .card{background:rgba(20,20,20,0.8);border:1px solid #00ff88;border-radius:20px;padding:30px;backdrop-filter:blur(10px);}
+  h1{color:#00ff88;}
+  input, textarea{width:90%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #333;background:#111;color:#fff;}
+ .btn{padding:14px 25px;margin:10px;background:linear-gradient(90deg,#00ff88,#00cc6a);color:#000;border:none;border-radius:12px;font-weight:bold;cursor:pointer;font-size:16px;}
+ .btn:hover{transform:scale(1.05);}
+  #preview{margin-top:30px;padding:20px;background:#111;border-radius:15px;text-align:left;}
+ .hero{background:#00ff88;color:#000;padding:40px;border-radius:15px;text-align:center;}
 </style>
 </head>
 <body>
-<h1>JEN FLASH BUILDER</h1>
-<p>Sign up in 2 seconds</p>
-<input type="email" placeholder="Enter Email" id="email">
-<input type="tel" placeholder="Enter Phone" id="phone">
-<button onclick="signup()">Sign Up</button>
+<div class="container">
+  <div class="card">
+    <h1>JEN FLASH BUILDER PRO</h1>
+    <p>Build a real $10k website in 2 seconds</p>
+    
+    <input type="text" id="bizName" placeholder="Your Business Name">
+    <input type="text" id="bizSlogan" placeholder="Your Slogan">
+    <input type="url" id="logoUrl" placeholder="Paste Logo Image Link">
+    <textarea id="aboutText" placeholder="About Your Business"></textarea>
+    
+    <button class="btn" onclick="buildSite('Business')">Business Website</button>
+    <button class="btn" onclick="buildSite('Store')">Store Website</button>
+    <button class="btn" onclick="buildSite('Portfolio')">Portfolio Website</button>
+    
+    <div id="preview"></div>
+  </div>
+</div>
 
 <script>
-function signup(){
-  localStorage.setItem('user', document.getElementById('email').value);
-  window.location.href = "app.html";
+function buildSite(type){
+  let name = document.getElementById('bizName').value || "Your Business";
+  let slogan = document.getElementById('bizSlogan').value || "We build amazing things";
+  let logo = document.getElementById('logoUrl').value || "";
+  let about = document.getElementById('aboutText').value || "We are the best in the industry.";
+  
+  let html = `
+  <div style="background:#fff;color:#000;font-family:Arial;">
+    <div class="hero">
+      ${logo? `<img src="${logo}" style="height:60px;">` : ''}
+      <h1>${name}</h1>
+      <p>${slogan}</p>
+      <button style="padding:12px 20px;background:#000;color:#00ff88;border:none;border-radius:8px;">Get Started</button>
+    </div>
+    <div style="padding:40px;">
+      <h2>About Us</h2><p>${about}</p>
+      <h2>Our Services</h2>
+      <div style="display:flex;gap:10px;"><div style="flex:1;border:1px solid #ccc;padding:10px;">Service 1</div><div style="flex:1;border:1px solid #ccc;padding:10px;">Service 2</div><div style="flex:1;border:1px solid #ccc;padding:10px;">Service 3</div></div>
+      <h2>Contact Us</h2>
+      <form onsubmit="alert('Message Sent! We will contact you.');return false;">
+        <input placeholder="Your Name"><br><input placeholder="Your Email"><br><textarea placeholder="Message"></textarea><br><button>Send</button>
+      </form>
+    </div>
+    <div style="background:#000;color:#fff;text-align:center;padding:20px;">© 2026 ${name}. Built by JEN FLASH BUILDER</div>
+  </div>`;
+  
+  document.getElementById('preview').innerHTML = html;
+  
+  // Create downloadable file
+  let blob = new Blob([html], {type: 'text/html'});
+  let url = URL.createObjectURL(blob);
+  document.getElementById('preview').innerHTML += `<br><a href="${url}" download="${name}.html" style="color:#00ff88;">⬇️ DOWNLOAD YOUR WEBSITE</a>`;
 }
 </script>
 </body>
