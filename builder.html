@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Building Your Site...</title>
+<style>
+body {background:black; color:#00FF88; font-family:monospace; text-align:center; padding-top:100px;}
+</style>
+</head>
+<body>
+<h1>Building your <span id="type"></span> website...</h1>
+<p id="status">Generating code...</p>
+<script>
+const type = localStorage.getItem('siteType');
+document.getElementById('type').innerText = type;
+setTimeout(()=>{
+  document.getElementById('status').innerHTML = "DONE! <a href='output.html' style='color:#00FF88'>Click to View Site</a>";
+  localStorage.setItem('builtSite', type);
+}, 2000);
+</script>
+</body>
+</html>
