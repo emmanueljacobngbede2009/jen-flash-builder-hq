@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JEN FLASH BUILDER - Dashboard</title>
+<style>
+body {background:#111; color:white; font-family:sans-serif; text-align:center; padding-top:60px;}
+h1 {color:#00FF88;}
+button {width:80%; padding:20px; margin:15px; background:#00FF88; color:black; border:none; border-radius:12px; font-size:18px; font-weight:bold;}
+</style>
+</head>
+<body>
+<h1>Welcome to JEN FLASH BUILDER</h1>
+<p>What do you want to build in 2 seconds?</p>
+<button onclick="buildSite('business')">Business Website</button>
+<button onclick="buildSite('store')">Store Website</button>
+<button onclick="buildSite('portfolio')">Portfolio Website</button>
+<script>
+function buildSite(type){
+  localStorage.setItem('siteType', type);
+  window.location.href = "builder.html";
+}
+</script>
+</body>
+</html>
