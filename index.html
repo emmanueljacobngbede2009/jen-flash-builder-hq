@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEN FLASH BUILDER PRO</title>
+<title>JEN FLASH BUILDER PRO V3</title>
 <style>
   body{margin:0;font-family:'Poppins',sans-serif;background:#0a0a0a;color:#fff;}
  .container{max-width:600px;margin:40px auto;padding:20px;text-align:center;}
@@ -19,8 +19,8 @@
 <body>
 <div class="container">
   <div class="card">
-    <h1>JEN FLASH BUILDER PRO</h1>
-    <p>Build a real $10k website in 2 seconds</p>
+    <h1>JEN FLASH BUILDER PRO V3</h1>
+    <p>Build + Collect Leads in 2 seconds</p>
     
     <input type="text" id="bizName" placeholder="Your Business Name">
     <input type="text" id="bizSlogan" placeholder="Your Slogan">
@@ -36,6 +36,8 @@
 </div>
 
 <script>
+const SHEET_URL = "https://script.google.com/macros/s/PASTE_YOUR_URL_HERE/exec";
+
 function buildSite(type){
   let name = document.getElementById('bizName').value || "Your Business";
   let slogan = document.getElementById('bizSlogan').value || "We build amazing things";
@@ -53,10 +55,13 @@ function buildSite(type){
     <div style="padding:40px;">
       <h2>About Us</h2><p>${about}</p>
       <h2>Our Services</h2>
-      <div style="display:flex;gap:10px;"><div style="flex:1;border:1px solid #ccc;padding:10px;">Service 1</div><div style="flex:1;border:1px solid #ccc;padding:10px;">Service 2</div><div style="flex:1;border:1px solid #ccc;padding:10px;">Service 3</div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;"><div style="flex:1;min-width:120px;border:1px solid #ccc;padding:10px;border-radius:8px;">Service 1</div><div style="flex:1;min-width:120px;border:1px solid #ccc;padding:10px;border-radius:8px;">Service 2</div><div style="flex:1;min-width:120px;border:1px solid #ccc;padding:10px;border-radius:8px;">Service 3</div></div>
       <h2>Contact Us</h2>
-      <form onsubmit="alert('Message Sent! We will contact you.');return false;">
-        <input placeholder="Your Name"><br><input placeholder="Your Email"><br><textarea placeholder="Message"></textarea><br><button>Send</button>
+      <form onsubmit="sendLead(event)">
+        <input id="leadName" placeholder="Your Name" required><br>
+        <input id="leadEmail" type="email" placeholder="Your Email" required><br>
+        <textarea id="leadMsg" placeholder="Message"></textarea><br>
+        <button style="padding:10px 20px;background:#00ff88;border:none;border-radius:8px;">Send</button>
       </form>
     </div>
     <div style="background:#000;color:#fff;text-align:center;padding:20px;">© 2026 ${name}. Built by JEN FLASH BUILDER</div>
@@ -64,10 +69,20 @@ function buildSite(type){
   
   document.getElementById('preview').innerHTML = html;
   
-  // Create downloadable file
   let blob = new Blob([html], {type: 'text/html'});
   let url = URL.createObjectURL(blob);
   document.getElementById('preview').innerHTML += `<br><a href="${url}" download="${name}.html" style="color:#00ff88;">⬇️ DOWNLOAD YOUR WEBSITE</a>`;
+}
+
+function sendLead(e){
+  e.preventDefault();
+  let data = {
+    name: document.getElementById('leadName').value,
+    email: document.getElementById('leadEmail').value,
+    message: document.getElementById('leadMsg').value
+  };
+  fetch(SHEET_URL, {method: 'POST', body: JSON.stringify(data)})
+  .then(res => alert('Message Sent! We got your lead.'));
 }
 </script>
 </body>
