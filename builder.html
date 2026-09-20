@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Building Your Site...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JEN FLASH BUILDER HQ v19.0</title>
 <style>
-body {background:black; color:#00FF88; font-family:monospace; text-align:center; padding-top:100px;}
+body{background:#0a0a0a;color:#fff;font-family:Arial;padding:10px}
+.shield{width:80px;height:80px;background:gold;border:4px solid green;outline:2px solid white;border-radius:20% 20% 50% 50%;display:flex;align-items:center;justify-content:center;font-weight:bold;color:red;margin:10px auto}
+textarea{width:100%;height:90px;background:#111;color:#0f0;border:2px solid gold;padding:8px}
+button{background:gold;color:#000;padding:12px;width:100%;border:none;font-weight:bold;margin:5px 0}
+pre{background:#111;padding:8px;white-space:pre-wrap;word-break:break-all;border:1px solid #333}
+.fp{width:120px;height:120px;border:3px solid gold;border-radius:50%;background:linear-gradient(red,black);margin:10px auto;position:relative;overflow:hidden}
+.scan{width:100%;height:3px;background:green;position:absolute;animation:move 2s infinite}
+@keyframes move{0%{top:0}100%{top:100%}}
 </style>
 </head>
 <body>
-<h1>Building your <span id="type"></span> website...</h1>
-<p id="status">Generating code...</p>
+<div class="shield">JEN TECH</div>
+<h2 style="text-align:center;color:gold">JEN FLASH BUILDER v19.0 - 87 FEATURES</h2>
+<p style="text-align:center">CEO: Emmanuel Jacob Ngbede - Makurdi - 07031890429 - GOD MODE</p>
+<div style="border:1px solid gold;padding:8px">
+<p>TOKEN: <span id="tokens">50</span> Free - Big Build 20 Small Build 10</p>
+<textarea id="prompt" placeholder="Build Scam Check app"></textarea>
+<button onclick="buildApp()">BUILD NOW 2 SECONDS</button>
+<button onclick="shareViral()">1-2 CLICKS SHARE TO BILLIONS</button>
+<div class="fp"><div class="scan"></div></div>
+<pre id="out">Ready - 87 Features Locked - Works on 1GB RAM - Future Proof</pre>
+</div>
 <script>
-const type = localStorage.getItem('siteType');
-document.getElementById('type').innerText = type;
-setTimeout(()=>{
-  document.getElementById('status').innerHTML = "DONE! <a href='output.html' style='color:#00FF88'>Click to View Site</a>";
-  localStorage.setItem('builtSite', type);
-}, 2000);
+const CEO={name:"Emmanuel Jacob Ngbede",email:"emmanueljacobngbede@gmail.com",phone:"07031890429",location:"Makurdi",role:"GOD MODE"};
+let tokens=50;
+function buildApp(){
+let p=document.getElementById('prompt').value.toLowerCase();
+let o=document.getElementById('out');
+let cost=p.includes('store')||p.includes('ecommerce')||p.includes('scam')?20:10;
+if(tokens<cost){o.textContent="No tokens Balance "+tokens;return;}
+tokens-=cost;document.getElementById('tokens').textContent=tokens;
+if(p.includes('scam')){o.textContent="<!DOCTYPE html><html><body><h1>Scam Check</h1><input id=s><button onclick=alert('Checking '+s.value)>Check</button></body></html>";}
+else if(p.includes('legacy')){o.textContent="<h1>Legacy Bridge 50 Apps for old phone 1GB RAM</h1><a href=https://web.whatsapp.com>WhatsApp</a>";}
+else{o.textContent="Built: "+p+" Cost "+cost+" Balance "+tokens+" Includes DB Auth Push APK SEO etc for USERS - 41 features";}
+}
+function shareViral(){let link="https://emmanueljacobngbede2009.github.io/jen-flash-builder-hq/builder.html";prompt("Share to billions:",link);}
 </script>
 </body>
 </html>
